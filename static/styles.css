@@ -1,0 +1,87 @@
+/* styles.css */
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f4f7fc;
+    background: linear-gradient(120deg, #a1c4fd, #c2e9fb); /* Soft gradient background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+    margin: auto;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #a1c4fd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+button.convert-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #a1c4fd;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button.convert-btn:hover {
+    background-color: #8bb1f7;
+}
+
+.result {
+    margin-top: 25px;
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
+}
+

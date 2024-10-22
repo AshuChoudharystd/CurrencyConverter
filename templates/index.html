@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Currency Converter</h1>
+        <p class="description">Easily convert between currencies with real-time exchange rates</p>
+        <form id="converterForm">
+            <div class="input-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
+            </div>
+            <div class="input-group">
+                <label for="fromCurrency">From</label>
+                <input type="text" id="fromCurrency" name="from_currency" placeholder="e.g., USD" required>
+            </div>
+            <div class="input-group">
+                <label for="toCurrency">To</label>
+                <input type="text" id="toCurrency" name="to_currency" placeholder="e.g., EUR" required>
+            </div>
+            <button type="submit" class="convert-btn">Convert</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        // JavaScript to handle form submission and fetch the result
+        document.getElementById('converterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const amount = document.getElementById('amount').value;
+            const fromCurrency = document.getElementById('fromCurrency').value.toUpperCase();
+            const toCurrency = document.getElementById('toCurrency').value.toUpperCase();
+
+            fetch('/convert', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    amount: parseFloat(amount),
+                    from_currency: fromCurrency,
+                    to_currency: toCurrency
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.converted_amount) {
+                    document.getElementById('result').textContent = `${amount} ${fromCurrency} is equal to ${data.converted_amount} ${toCurrency}`;
+                } else if (data.error) {
+                    document.getElementById('result').textContent = `Error: ${data.error}`;
+                }
+            })
+            .catch(error => {
+                document.getElementById('result').textContent = 'An error occurred during conversion.';
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
